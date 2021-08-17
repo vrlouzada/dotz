@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DOTZ.Application\DOTZ.Application.csproj" />
+    <ProjectReference Include="..\DOTZ.CrossCutting\DOTZ.CrossCutting.csproj" />
+    <ProjectReference Include="..\DOTZ.Domain\DOTZ.Domain.csproj" />
+  </ItemGroup>
+
+
+</Project>
