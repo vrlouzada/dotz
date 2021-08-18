@@ -1,9 +1,6 @@
 ﻿using DOTZ.CrossCutting.IoC;
 using DOTZ.Domain.Contracts.Repository;
 using DOTZ.Domain.Entity;
-using System;
-using System.Collections.Generic;
-using System.Text;
 using Xunit;
 
 namespace DOTZ.Test.Repository
@@ -60,6 +57,15 @@ namespace DOTZ.Test.Repository
 
             var result = _costumerRepository.Update(costumer);
             Assert.True(result);
+        }
+
+        [Theory]
+        [InlineData(2)]
+        public void GetBalance(int userId)
+        {
+            var result = _costumerRepository.GetBalance(userId);
+
+            Assert.True(result != 0);
         }
 
     }

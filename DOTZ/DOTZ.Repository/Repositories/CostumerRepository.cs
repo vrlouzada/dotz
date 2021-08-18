@@ -61,5 +61,18 @@ namespace DOTZ.Repository.Repositories
                 throw ex;
             }
         }
+
+        public double GetBalance(int userId)
+        {
+            try
+            {
+                var sql = $"SELECT Balance FROM {nameof(Costumer)} WHERE UserId = @userId";
+                return _db.QueryFirstOrDefault<double>(sql, new { UserId = userId });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

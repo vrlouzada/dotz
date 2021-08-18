@@ -10,6 +10,7 @@ namespace DOTZ.Domain.Contracts.Repository
         Costumer Get(int userId);
         bool Insert(Costumer costumer);
         bool Update(Costumer costumer);
+        double GetBalance(int userId);
     }
 
 }
