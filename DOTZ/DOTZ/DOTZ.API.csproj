@@ -5,6 +5,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Dapper" Version="2.0.90" />
+    <PackageReference Include="Dapper.SimpleCRUD" Version="2.3.0" />
+    <PackageReference Include="EasySimpleInjector" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\DOTZ.Application\DOTZ.Application.csproj" />
     <ProjectReference Include="..\DOTZ.CrossCutting\DOTZ.CrossCutting.csproj" />
     <ProjectReference Include="..\DOTZ.Domain\DOTZ.Domain.csproj" />
