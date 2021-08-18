@@ -32,6 +32,20 @@ namespace DOTZ.Repository.Repositories
             }
         }
 
+        public User Get(int userId)
+        {
+            try
+            {
+                var db = _conn.GetConnection();
+                var sql = $"SELECT * FROM {nameof(User)} WHERE Id = @userId";
+                return db.QueryFirstOrDefault<User>(sql, new { userId = userId});
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool Create(User user)
         {
             try

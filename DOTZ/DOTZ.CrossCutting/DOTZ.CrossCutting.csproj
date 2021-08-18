@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\DOTZ.Repository\DOTZ.Repository.csproj" />
+    <ProjectReference Include="..\DOTZ.ServicesDomain\DOTZ.ServicesDomain.csproj" />
   </ItemGroup>
 
 </Project>

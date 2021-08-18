@@ -9,6 +9,7 @@ namespace DOTZ.Domain.Contracts.Repository
     {
         User Get(string login, string pass);
         bool Create(User user);
+        User Get(int userId);
     }
 
 }

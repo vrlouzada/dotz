@@ -39,5 +39,14 @@ namespace DOTZ.Test.Repository
 
             Assert.True(isAdded);
         }
+
+        [Theory]
+        [InlineData(2)]
+        public void Get(int userId)
+        {
+            var user = _userRepository.Get(userId);
+
+            Assert.NotNull(user);
+        }
     }
 }

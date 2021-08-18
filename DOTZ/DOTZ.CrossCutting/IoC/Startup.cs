@@ -1,6 +1,7 @@
 ﻿using DOTZ.Domain.Contracts.Repository;
 using DOTZ.Repository.Bases;
 using DOTZ.Repository.Repositories;
+using DOTZ.ServicesDomain.Services;
 using HCI.EasySimpleInjector;
 using SimpleInjector;
 using System;
@@ -19,7 +20,9 @@ namespace DOTZ.CrossCutting.IoC
         {
             var lifestyle = Lifestyle.Transient;
 
-            var container = Register.RegisterNamespace<UserRepository>(lifestyle, "Repository");
+            var container = new Container();
+            Register.RegisterNamespace<UserRepository>(container, lifestyle, "Repository");
+            Register.RegisterNamespace<TokenService>(container, lifestyle, "Service");
 
             container.Register(typeof(IConnection), typeof(Connection), lifestyle);
 
