@@ -12,6 +12,7 @@ namespace DOTZ.Domain.Contracts.Repository
         List<Address> GetList(int costumerId);
         bool Insert(Address address);
         bool Update(Address address);
+        Address Get(int costumerId, string description);
     }
 
 }

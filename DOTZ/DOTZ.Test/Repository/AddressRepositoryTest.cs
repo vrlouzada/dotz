@@ -55,6 +55,18 @@ namespace DOTZ.Test.Repository
         }
 
         [Theory]
+        [InlineData(1, "trabalho")]
+        public void GetBydescription(int costumerId, string description)
+        {
+            var address = _addressRepository.Get(costumerId, description);
+
+            Assert.NotNull(address);
+            Assert.Equal(costumerId, address.CostumerId);
+            Assert.Equal(description.ToUpper(), address.Description.ToUpper());
+        }
+
+
+        [Theory]
         [InlineData(1)]
         public void GetList(int costumerId)
         {

@@ -35,6 +35,20 @@ namespace DOTZ.Repository.Repositories
             }
         }
 
+        public Address Get(int costumerId, string description)
+        {
+            try
+            {
+                var sql = $"SELECT * FROM {nameof(Address)} WHERE CostumerId = @costumerId and Description = @description";
+
+                return _db.QueryFirstOrDefault<Address>(sql, new { costumerId = costumerId, description = description });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<Address> GetList(int costumerId)
         {
             try
