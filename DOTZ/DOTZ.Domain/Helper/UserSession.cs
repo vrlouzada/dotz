@@ -20,6 +20,12 @@ namespace DOTZ.Domain.Helper
             _context = httpContextAccessor;
         }
 
+        public Costumer costumer => (Costumer)_context?.HttpContext.Items.FirstOrDefault(a => a.Key.Equals("User")).Value;
+
+        public int UserId => costumer.UserId;
+
+        public string FirstName => costumer.FirstName;
+
         public Costumer GetCostumer() {
 
             if (_context == null)

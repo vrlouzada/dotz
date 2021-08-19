@@ -8,6 +8,7 @@ namespace DOTZ.Domain.Contracts.Service
     public interface IAccountService
     {
         AuthResponse Authenticate(AuthRequest request);
+        AuthResponse CreateUser(LogonRequest logonRequest);
     }
 
 }

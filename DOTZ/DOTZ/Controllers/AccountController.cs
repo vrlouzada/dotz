@@ -20,7 +20,7 @@ namespace DOTZ.API.Controllers
             _accountService = accountService;
         }
 
-        [HttpPost("authenticate")]
+        [HttpPost]
         public IActionResult Authenticate(AuthRequest model)
         {
             var response = _accountService.Authenticate(model);
@@ -29,6 +29,23 @@ namespace DOTZ.API.Controllers
                 return BadRequest(new { message = "Username or password is incorrect" });
 
             return Ok(response);
+        }
+
+
+        [HttpPut]
+        public IActionResult Logon(LogonRequest logonRequest)
+        {
+            try
+            {
+                var response = _accountService.CreateUser(logonRequest);
+
+                return Ok(response);                
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+            
         }
     }
 }

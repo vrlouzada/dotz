@@ -8,6 +8,8 @@ namespace DOTZ.Domain.Contracts.Helper
 {
     public interface IUserSession
     {
+        int UserId { get; }
+        string FirstName { get; }
         Costumer GetCostumer();
     }
 

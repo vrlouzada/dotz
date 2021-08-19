@@ -34,9 +34,7 @@ namespace DOTZ.Controllers
         {
             var rng = new Random();
 
-            var costumer = _userSession.GetCostumer();
-
-            
+            var costumer = _userSession.GetCostumer();            
 
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {

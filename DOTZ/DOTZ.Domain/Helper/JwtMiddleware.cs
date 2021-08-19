@@ -51,8 +51,12 @@ namespace DOTZ.Domain.Helper
                 var jwtToken = (JwtSecurityToken)validatedToken;
                 var userId = int.Parse(jwtToken.Claims.First(x => x.Type == "UserId").Value);
 
+
                 // attach user to context on successful jwt validation
-                context.Items["User"] = costumerRepository.Get(userId);
+                var costumer = costumerRepository.Get(userId);
+
+
+                context.Items["User"] = costumer != null ? costumer : new Entity.Costumer { UserId = userId };
             }
             catch
             {
