@@ -31,15 +31,20 @@ namespace DOTZ.Test.Repository
 
 
         [Theory]
-        [InlineData(2, 5, 6, 2)]
-        public void Insert(int costumerId, int productId, int addressId, int orderStatusId)
+        [InlineData(2, 5, 6, 2, 0, "2021-08-19")]
+        public void Insert(int costumerId, int productId, int addressId, int orderStatusId, double amount, string dateString)
         {
+
+            var date = DateTime.Parse(dateString);
+
             var order = new Orders
             {
                 CostumerId = costumerId,
                 ProductId = productId,
                 AddressId = addressId,
-                OrderStatusId = orderStatusId
+                OrderStatusId = orderStatusId,
+                Date = date,
+                Amount = amount
             };
 
             var result = _orderRepository.Insert(order);

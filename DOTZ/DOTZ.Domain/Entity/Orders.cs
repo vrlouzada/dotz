@@ -16,5 +16,6 @@ namespace DOTZ.Domain.Entity
         public int AddressId { get; set; }
         public int OrderStatusId { get; set; }
         public double Amount { get; set; }
+        public DateTime Date { get; set; }
     }
 }

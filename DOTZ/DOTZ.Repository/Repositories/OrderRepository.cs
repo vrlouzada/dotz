@@ -39,7 +39,7 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"INSERT INTO {nameof(Orders)} (CostumerId, ProductId, AddressId, OrderStatusId, Amount) Values (@costumerId, @productId, @addressId, @orderStatusId, @amount)";
+                var sql = $"INSERT INTO {nameof(Orders)} (CostumerId, ProductId, AddressId, OrderStatusId, Amount, Date) Values (@costumerId, @productId, @addressId, @orderStatusId, @amount, @date)";
 
                 var db = _conn.GetConnection();
 
