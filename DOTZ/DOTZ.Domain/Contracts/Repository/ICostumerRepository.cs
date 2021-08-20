@@ -11,6 +11,7 @@ namespace DOTZ.Domain.Contracts.Repository
         bool Insert(Costumer costumer);
         bool Update(Costumer costumer);
         double GetBalance(int userId);
+        bool UpdateBalance(int userId, double balance);
     }
 
 }

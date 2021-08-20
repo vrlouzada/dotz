@@ -35,7 +35,7 @@ namespace DOTZ.ServicesDomain.Services
 
             var orders = _orderRepository.GetList(costumerId);
 
-            var balance = awards.Sum(a => a.Amount) + orders.Sum(a => a.Amount);
+            var balance = awards.Sum(a => a.Amount) - orders.Sum(a => a.Amount);
 
             var response = new BalanceDTO
             {

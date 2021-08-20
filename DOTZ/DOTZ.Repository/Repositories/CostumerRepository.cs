@@ -85,5 +85,23 @@ namespace DOTZ.Repository.Repositories
                 throw ex;
             }
         }
+
+        public bool UpdateBalance(int userId, double balance)
+        {
+            try
+            {
+                var sql = $"UPDATE {nameof(Costumer)} SET Balance = @balance WHERE UserId = @userId";
+
+                var _db = _conn.GetConnection();
+
+                var result = _db.Execute(sql, new { Balance = balance,  UserId = userId });
+
+                return result == 1 ? true : false;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

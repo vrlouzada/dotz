@@ -68,5 +68,14 @@ namespace DOTZ.Test.Repository
             Assert.True(result != 0);
         }
 
+        [Theory]
+        [InlineData(2, 1700)]
+        public void UpdateBalance(int userId, double balance)
+        {
+            var result = _costumerRepository.UpdateBalance(userId, balance);
+
+            Assert.True(result);
+        }
+
     }
 }
