@@ -1,5 +1,6 @@
 ﻿using Dapper;
 using DOTZ.Domain.Contracts.Repository;
+using DOTZ.Domain.DTO;
 using DOTZ.Domain.Entity;
 using System;
 using System.Collections.Generic;
@@ -57,6 +58,28 @@ namespace DOTZ.Repository.Repositories
             var result = db.Execute(sql, product);
 
             return result > 0 ? true : false;
+        }
+
+        public List<ProductDTO> GetAvailableList()
+        {
+            try
+            {
+                var sql =   $"SELECT PRD.Id, PRD.Name, PRD.Description, PRD.Amount, PRD.Stock, CT.Description as Category " +
+                            $"FROM {nameof(Product)} PRD " +
+                            $"INNER JOIN Category CT ON CT.Id = PRD.CategoryId " +
+                            $"WHERE PRD.Stock > 0";
+
+                var db = _conn.GetConnection();
+
+                var result = db.Query<ProductDTO>(sql).ToList();
+
+                return result;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

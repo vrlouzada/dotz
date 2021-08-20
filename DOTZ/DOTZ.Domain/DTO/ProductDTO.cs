@@ -11,7 +11,6 @@ namespace DOTZ.Domain.DTO
         public string Description { get; set; }
         public string Amount { get; set; }
         public int Stock { get; set; }
-        public int CategoryId { get; set; }
         public string Category { get; set; }
     }
 }

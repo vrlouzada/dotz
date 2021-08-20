@@ -74,6 +74,13 @@ namespace DOTZ.Test.Repository
             Assert.True(result);
         }
         
+        [Fact]
+        public void GetAvailabeProduct()
+        {
+            var result = _productRepository.GetAvailableList();
+
+            Assert.NotEmpty(result);
+        }
 
     }
 }
