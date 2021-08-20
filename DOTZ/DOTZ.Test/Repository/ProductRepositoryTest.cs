@@ -1,5 +1,6 @@
 ﻿using DOTZ.CrossCutting.IoC;
 using DOTZ.Domain.Contracts.Repository;
+using DOTZ.Domain.Entity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -53,6 +54,24 @@ namespace DOTZ.Test.Repository
                 Assert.True(result);
             }
 
+        }
+
+        [Theory]
+        [InlineData("Playstation 5", "Desconto de 5% na compra do console da Sony", 2000, 60, 5)]
+        public void Insert(string name, string description, double amount, int stock, int categoryId)
+        {
+            var product = new Product
+            {
+                Name = name,
+                Description = description,
+                Amount = amount,
+                Stock = stock,
+                CategoryId = categoryId
+            };
+
+            var result = _productRepository.Insert(product);
+
+            Assert.True(result);
         }
         
 

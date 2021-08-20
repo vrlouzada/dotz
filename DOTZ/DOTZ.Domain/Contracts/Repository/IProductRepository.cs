@@ -9,6 +9,7 @@ namespace DOTZ.Domain.Contracts.Repository
     {
         Product Get(int id);
         List<Product> GetAll();
+        bool Insert(Product product);
         bool UpdateStock(int id, int stock);
     }
 

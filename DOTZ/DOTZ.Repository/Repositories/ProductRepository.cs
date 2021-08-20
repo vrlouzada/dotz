@@ -48,6 +48,15 @@ namespace DOTZ.Repository.Repositories
             return result > 0 ? true : false;
         }
 
+        public bool Insert(Product product)
+        {
+            var sql = $"INSERT INTO {nameof(Product)} (Name, Description, Amount, Stock, CategoryId) Values (@name, @description, @amount, @stock, @categoryId)";
 
+            var db = _conn.GetConnection();
+
+            var result = db.Execute(sql, product);
+
+            return result > 0 ? true : false;
+        }
     }
 }
