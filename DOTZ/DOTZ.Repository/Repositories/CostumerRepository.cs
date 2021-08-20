@@ -11,12 +11,10 @@ namespace DOTZ.Repository.Repositories
     public class CostumerRepository : ICostumerRepository
     {
         private readonly IConnection _conn;
-        private IDbConnection _db;
 
         public CostumerRepository(IConnection connection)
         {
             _conn = connection;
-            _db = _conn.GetConnection();
         }
 
 
@@ -25,6 +23,9 @@ namespace DOTZ.Repository.Repositories
             try
             {
                 var sql = $"SELECT * FROM {nameof(Costumer)} WHERE UserId = @userId";
+
+                var _db = _conn.GetConnection();
+
                 return _db.QueryFirstOrDefault<Costumer>(sql, new { userId = userId });
             }
             catch (Exception ex)
@@ -38,6 +39,9 @@ namespace DOTZ.Repository.Repositories
             try
             {
                 var sql = $"INSERT INTO {nameof(Costumer)} (UserId, FirstName, LastName) VALUES (@userId, @firstName, @lastName)";
+
+                var _db = _conn.GetConnection();
+
                 var isExecut = _db.Execute(sql, costumer);
 
                 return isExecut == 1 ? true : false;
@@ -53,7 +57,11 @@ namespace DOTZ.Repository.Repositories
             try
             {
                 var sql = $"UPDATE {nameof(Costumer)} SET FirstName = @firstName, LastName = @lastName WHERE UserId = @userId";
+
+                var _db = _conn.GetConnection();
+
                 var isUpdated = _db.Execute(sql, costumer);
+
                 return isUpdated == 1 ? true : false;
             }
             catch (Exception ex)
@@ -67,6 +75,9 @@ namespace DOTZ.Repository.Repositories
             try
             {
                 var sql = $"SELECT Balance FROM {nameof(Costumer)} WHERE UserId = @userId";
+
+                var _db = _conn.GetConnection();
+
                 return _db.QueryFirstOrDefault<double>(sql, new { UserId = userId });
             }
             catch (Exception ex)

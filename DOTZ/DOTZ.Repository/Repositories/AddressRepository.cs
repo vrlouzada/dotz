@@ -13,12 +13,11 @@ namespace DOTZ.Repository.Repositories
     {
 
         private readonly IConnection _conn;
-        private readonly IDbConnection _db;
 
         public AddressRepository(IConnection connection)
         {
             _conn = connection;
-            _db = _conn.GetConnection();
+            
         }
 
         public Address Get(int id)
@@ -26,6 +25,8 @@ namespace DOTZ.Repository.Repositories
             try
             {
                 var sql = $"SELECT * FROM {nameof(Address)} WHERE Id = @id";
+
+                var _db = _conn.GetConnection();
 
                 return _db.QueryFirstOrDefault<Address>(sql, new { id = id });
             }
@@ -41,6 +42,8 @@ namespace DOTZ.Repository.Repositories
             {
                 var sql = $"SELECT * FROM {nameof(Address)} WHERE CostumerId = @costumerId and Description = @description";
 
+                var _db = _conn.GetConnection();
+
                 return _db.QueryFirstOrDefault<Address>(sql, new { costumerId = costumerId, description = description });
             }
             catch (Exception ex)
@@ -54,6 +57,8 @@ namespace DOTZ.Repository.Repositories
             try
             {
                 var sql = $"SELECT * FROM {nameof(Address)} WHERE CostumerId = @costumerId";
+
+                var _db = _conn.GetConnection();
 
                 return _db.Query<Address>(sql, new { costumerId = costumerId }).ToList();
             }
@@ -69,6 +74,8 @@ namespace DOTZ.Repository.Repositories
             {
                 var sql = $"INSERT INTO {nameof(Address)} (CostumerId, Description, Street, Number, Complement, PostalCode, Neighborhood, City, State) " +
                             $"Values (@costumerId, @description, @street, @number, @complement, @postalCode, @neighborhood, @city, @state)";
+
+                var _db = _conn.GetConnection();
 
                 var result = _db.Execute(sql, address);
 
@@ -95,6 +102,8 @@ namespace DOTZ.Repository.Repositories
                             $"    City = @city, " +
                             $"    State = @state " +
                             $"WHERE Id = @id";
+
+                var _db = _conn.GetConnection();
 
                 var result = _db.Execute(sql, address);
 
