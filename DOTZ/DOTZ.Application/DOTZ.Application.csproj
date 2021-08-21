@@ -1,0 +1,18 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DOTZ.CrossCutting\DOTZ.CrossCutting.csproj" />
+    <ProjectReference Include="..\DOTZ.Domain\DOTZ.Domain.csproj" />
+    <ProjectReference Include="..\DOTZ.Repository\DOTZ.Repository.csproj" />
+    <ProjectReference Include="..\DOTZ.ServicesDomain\DOTZ.ServicesDomain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Applications\" />
+  </ItemGroup>
+
+</Project>

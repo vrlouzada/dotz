@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="PELEXMapper" Version="1.1.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="6.12.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\DOTZ.Domain\DOTZ.Domain.csproj" />
+    <ProjectReference Include="..\DOTZ.Repository\DOTZ.Repository.csproj" />
+  </ItemGroup>
+
+</Project>
