@@ -36,5 +36,13 @@ namespace DOTZ.Test.Service
             Assert.NotNull(response);
             Assert.Equal(EnumHelper.GetDescription(OrderStatusValues.ORDER_REQUESTED), response.OrderStatus);
         }
+
+        [Fact]
+        public void GetOrders()
+        {
+            var orders = _orderService.GetOrders();
+
+            Assert.NotEmpty(orders);
+        }
     }
 }

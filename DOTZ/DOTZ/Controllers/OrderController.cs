@@ -36,5 +36,21 @@ namespace DOTZ.API.Controllers
                 return BadRequest(new { message = ex.Message });
             }
         }
+
+        [HttpGet]
+        [Authorize]
+        public IActionResult GetAll()
+        {
+            try
+            {
+                var response = _orderService.GetOrders();
+
+                return Ok(response);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(new { message = ex.Message });
+            }
+        }
     }
 }

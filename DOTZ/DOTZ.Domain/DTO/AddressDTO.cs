@@ -1,13 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace DOTZ.Domain.Entity
+namespace DOTZ.Domain.DTO
 {
-    public class Address
+    public class AddressDTO
     {
-        [Key]
         public int Id { get; set; }
         public int CostumerId { get; set; }
         public string Description { get; set; }
@@ -18,7 +16,5 @@ namespace DOTZ.Domain.Entity
         public string Neighborhood { get; set; }
         public string City { get; set; }
         public string State { get; set; }
-
-
     }
 }

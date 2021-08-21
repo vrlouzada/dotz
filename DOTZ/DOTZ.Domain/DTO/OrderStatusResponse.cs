@@ -10,5 +10,6 @@ namespace DOTZ.Domain.DTO
         public string ProductName { get; set; }
         public DateTime OrderDate { get; set; }
         public string OrderStatus { get; set; }
+        public AddressDTO Address { get; set; }
     }
 }
