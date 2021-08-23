@@ -1,8 +1,11 @@
 ﻿using DOTZ.Domain.Contracts.Service;
 using DOTZ.Domain.Entity;
+using DOTZ.Domain.Helper;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
@@ -11,15 +14,20 @@ namespace DOTZ.ServicesDomain.Services
 {
     public class TokenService : ITokenService
     {
+        private readonly IOptions<AppSettings> _config;
 
-        private const string KEY = "be187b09f156ed142635484b81145a13";
+
+        public TokenService(IOptions<AppSettings> config)
+        {
+            _config = config;
+        }
 
         public string GenerateToken(Costumer costumer)
         {
 
             var tokenHandler = new JwtSecurityTokenHandler();
-            //TODO: Passar a Key pelas variáveis ou pelo resource
-            var key = Encoding.ASCII.GetBytes(KEY);
+        
+            var key = Encoding.ASCII.GetBytes(_config.Value.Secret);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

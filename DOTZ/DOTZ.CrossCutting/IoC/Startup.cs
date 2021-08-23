@@ -1,11 +1,13 @@
 ﻿using DOTZ.Domain.Contracts.Helper;
 using DOTZ.Domain.Contracts.Repository;
 using DOTZ.Domain.Helper;
+using DOTZ.Domain.Resources;
 using DOTZ.Repository.Bases;
 using DOTZ.Repository.Repositories;
 using DOTZ.ServicesDomain.Services;
 using HCI.EasySimpleInjector;
 using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Options;
 using Moq;
 using SimpleInjector;
 using System;
@@ -35,6 +37,9 @@ namespace DOTZ.CrossCutting.IoC
 
             container.Register(typeof(IConnection), typeof(Connection), lifestyle);
 
+            IOptions<AppSettings> options = GenerateOptions();
+
+            container.Register(() => { return options; }, lifestyle);
 
             return container;
         }
@@ -46,6 +51,23 @@ namespace DOTZ.CrossCutting.IoC
             userSesion.Setup(_ => _.FirstName).Returns("Victor");
             userSesion.Setup(_ => _.UserId).Returns(2);
             return userSesion.Object;
+        }
+
+        private static IOptions<AppSettings> GenerateOptions()
+        {
+            var settings = new Mock<IOptions<AppSettings>>();
+            settings.Setup(a => a.Value).Returns(GetSettings());
+            return settings.Object;
+        }
+
+        private static AppSettings GetSettings()
+        {
+            var settings = new AppSettings
+            {
+                Secret = Global.Secret
+            };
+
+            return settings;
         }
     }
 }
