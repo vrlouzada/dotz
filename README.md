@@ -1,5 +1,5 @@
 # dotz
-Aplicação de apresentação para o processo seletivo  
+Solução para autenticação e consumo de API REST  
 
 <b>Back </b> <br>
 Web API - Asp Net Core 3.1
