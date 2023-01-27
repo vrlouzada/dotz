@@ -44,7 +44,7 @@ namespace DOTZ.ServicesDomain.Services
         {
             logonRequest.Validate();
 
-            var userEntity = MapperUtil.MapIgnoreDependences<User>(logonRequest);
+            var userEntity = MapperUtil.MapIgnoreDependences<UserAccounts>(logonRequest);
 
             if (_userRepository.Create(userEntity))
             {

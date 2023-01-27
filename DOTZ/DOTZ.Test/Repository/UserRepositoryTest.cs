@@ -34,7 +34,7 @@ namespace DOTZ.Test.Repository
         [InlineData("vrlouzada@gmail.com", "@Abc123456")]
         public void Create(string login, string pass)
         {
-            var user = new User { Login = login, Pass = pass };
+            var user = new UserAccounts { Login = login, Pass = pass };
             var isAdded = _userRepository.Create(user);
 
             Assert.True(isAdded);

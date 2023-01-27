@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using System.Text;
 
 namespace DOTZ.Domain.Entity
 {
-    [Table("user")]
-    public class User
+    [Table(nameof(UserAccounts))]
+    public class UserAccounts
     {
         [Key]
         public int Id { get; set; }

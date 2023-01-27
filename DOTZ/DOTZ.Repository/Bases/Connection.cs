@@ -12,7 +12,7 @@ namespace DOTZ.Repository.Bases
 
         private IDbConnection _conn;
         //private const string CONNEXTION = "Server=127.0.0.1;Database=dotz;User Id=local;Password=@local2021;";
-        private const string CONNEXTION = "Server=127.0.0.1;Port=3306;Database=dotz;Uid=local;Pwd=@local2021;";
+        private const string CONNEXTION = "Server=vrldbserver.database.windows.net;Database=dotz;Uid=DeveloperAuth;Pwd=@local2021;";
 
         public Connection()
         {
@@ -26,7 +26,7 @@ namespace DOTZ.Repository.Bases
             {
                 if (_conn == null)
                 {
-                    _conn = new MySqlConnection(CONNEXTION);
+                    _conn = new SqlConnection(CONNEXTION);
                 }
                 else
                 {

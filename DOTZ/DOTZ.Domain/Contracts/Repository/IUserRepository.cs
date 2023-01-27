@@ -7,9 +7,9 @@ namespace DOTZ.Domain.Contracts.Repository
 {
     public interface IUserRepository
     {
-        User Get(string login, string pass);
-        bool Create(User user);
-        User Get(int userId);
+        UserAccounts Get(string login, string pass);
+        bool Create(UserAccounts user);
+        UserAccounts Get(int userId);
     }
 
 }

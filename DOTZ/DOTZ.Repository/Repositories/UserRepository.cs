@@ -18,13 +18,13 @@ namespace DOTZ.Repository.Repositories
         }
 
 
-        public User Get(string login, string pass)
+        public UserAccounts Get(string login, string pass)
         {
             try
             {
                 var db = _conn.GetConnection();
-                var sql = $"SELECT * FROM {nameof(User)} WHERE Login = @login AND Pass = @pass";
-                return db.QueryFirstOrDefault<User>(sql, new { login = login, pass = pass });
+                var sql = $"SELECT * FROM {nameof(UserAccounts)} WHERE Login = @login AND Pass = @pass";
+                return db.QueryFirstOrDefault<UserAccounts>(sql, new { login = login, pass = pass });
             }
             catch (Exception ex)
             {
@@ -32,13 +32,13 @@ namespace DOTZ.Repository.Repositories
             }
         }
 
-        public User Get(int userId)
+        public UserAccounts Get(int userId)
         {
             try
             {
                 var db = _conn.GetConnection();
-                var sql = $"SELECT * FROM {nameof(User)} WHERE Id = @userId";
-                return db.QueryFirstOrDefault<User>(sql, new { userId = userId});
+                var sql = $"SELECT * FROM {nameof(UserAccounts)} WHERE Id = @userId";
+                return db.QueryFirstOrDefault<UserAccounts>(sql, new { userId = userId});
             }
             catch (Exception ex)
             {
@@ -46,7 +46,7 @@ namespace DOTZ.Repository.Repositories
             }
         }
 
-        public bool Create(User user)
+        public bool Create(UserAccounts user)
         {
             try
             {
