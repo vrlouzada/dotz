@@ -11,8 +11,6 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
 using Moq;
-using SimpleInjector;
-using System.Diagnostics;
 
 namespace DOTZ.CrossCutting.IoC
 {
@@ -24,9 +22,18 @@ namespace DOTZ.CrossCutting.IoC
             service.AddScoped<IConnection, Connection>();
             service.AddScoped<IUserRepository, UserRepository>();
             service.AddScoped<ICostumerRepository, CostumerRepository>();
+            service.AddScoped<IAddressRepository, AddressRepository>();
+            service.AddScoped<IAwardRepository, AwardRepository>();
+            service.AddScoped<IOrderRepository, OrderRepository>();
+            service.AddScoped<IProductRepository, ProductRepository>();
 
             service.AddScoped<IAccountService, AccountService>();
             service.AddScoped<ITokenService, TokenService>();
+            service.AddScoped<IAddressService, AddressService>();
+            service.AddScoped<IExtractService, ExtractService>();
+            service.AddScoped<IBalanceService, BalanceService>();
+            service.AddScoped<IOrderService, OrderService>();
+            service.AddScoped<IProductService, ProductService>();
 
 
             service.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
