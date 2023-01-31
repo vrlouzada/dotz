@@ -1,10 +1,10 @@
 ﻿using Dapper;
 using DOTZ.Domain.Contracts.Repository;
 using DOTZ.Domain.Entity;
+using DOTZ.Domain.Resources;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 
 namespace DOTZ.Repository.Repositories
 {
@@ -23,11 +23,9 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"SELECT * FROM {nameof(Award)} WHERE CostumerId = @costumerId";
-
                 var db = _conn.GetConnection();
 
-                return db.Query<Award>(sql, new { costumerId = costumerId }).ToList();
+                return db.Query<Award>(Scripts.Award_GetAll, new { costumerId = costumerId }).ToList();
             }
             catch (Exception ex)
             {
@@ -39,13 +37,11 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"INSERT INTO {nameof(Award)} (CostumerId, Description, Amount, Date) Values (@costumerId, @description, @amount, @date)";
-
                 var db = _conn.GetConnection();
 
-                var result = db.Execute(sql, award);
+                var result = db.Execute(Scripts.Award_Update, award);
 
-                return result == 1 ? true : false;
+                return result == 1;
             }
             catch (Exception ex)
             {

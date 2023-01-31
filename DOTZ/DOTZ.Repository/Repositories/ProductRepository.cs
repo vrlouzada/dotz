@@ -2,11 +2,10 @@
 using DOTZ.Domain.Contracts.Repository;
 using DOTZ.Domain.DTO;
 using DOTZ.Domain.Entity;
+using DOTZ.Domain.Resources;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace DOTZ.Repository.Repositories
 {
@@ -22,56 +21,71 @@ namespace DOTZ.Repository.Repositories
 
         public List<Product> GetAll()
         {
-            var sql = $"SELECT * FROM {nameof(Product)} WHERE Stock > 0";
+            try
+            {
+                var db = _conn.GetConnection();
 
-            var db = _conn.GetConnection();
-
-            return db.Query<Product>(sql).ToList();
+                return db.Query<Product>(Scripts.Product_GetAll).ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public Product Get(int id)
         {
-            var sql = $"SELECT * FROM {nameof(Product)} WHERE Id = @id";
+            try
+            {
+                var db = _conn.GetConnection();
 
-            var db = _conn.GetConnection();
-
-            return db.QueryFirstOrDefault<Product>(sql, new { Id = id });
+                return db.QueryFirstOrDefault<Product>(Scripts.Product_GetById, new { Id = id });
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool UpdateStock(int id, int stock)
         {
-            var sql = $"UPDATE {nameof(Product)} SET Stock = @stock WHERE Id = @id";
+            try
+            {
+                var db = _conn.GetConnection();
 
-            var db = _conn.GetConnection();
+                var result = db.Execute(Scripts.Product_UpdateStock, new { Stock = stock, Id = id });
 
-            var result = db.Execute(sql, new { Stock = stock, Id = id });
-
-            return result > 0 ? true : false;
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public bool Insert(Product product)
         {
-            var sql = $"INSERT INTO {nameof(Product)} (Name, Description, Amount, Stock, CategoryId) Values (@name, @description, @amount, @stock, @categoryId)";
+            try
+            {
+                var db = _conn.GetConnection();
 
-            var db = _conn.GetConnection();
+                var result = db.Execute(Scripts.Product_NewProduct, product);
 
-            var result = db.Execute(sql, product);
-
-            return result > 0 ? true : false;
+                return result > 0;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
 
         public List<ProductDTO> GetAvailableList()
         {
             try
             {
-                var sql =   $"SELECT PRD.Id, PRD.Name, PRD.Description, PRD.Amount, PRD.Stock, CT.Description as Category " +
-                            $"FROM {nameof(Product)} PRD " +
-                            $"INNER JOIN Category CT ON CT.Id = PRD.CategoryId " +
-                            $"WHERE PRD.Stock > 0";
-
                 var db = _conn.GetConnection();
 
-                var result = db.Query<ProductDTO>(sql).ToList();
+                var result = db.Query<ProductDTO>(Scripts.Product_GetAvailableWithCategory).ToList();
 
                 return result;
 
