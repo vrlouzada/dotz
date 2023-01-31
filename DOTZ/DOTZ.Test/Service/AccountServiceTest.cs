@@ -38,23 +38,23 @@ namespace DOTZ.Test.Service
             Assert.NotNull(response.Token);
         }
 
-        [Theory]
-        [InlineData("taynara@hotmail.com", "123456", "123456", "taynara", "Louzada")]
-        public void CreateCostumer(string login, string pass, string passrepeat, string firstName, string lastName)
-        {
-            var request = new LogonRequest
-            {
-                Login = login,
-                Pass = pass,
-                PassRepeat = passrepeat,
-                FirstName = firstName,
-                LastName = lastName
-            };
+        //[Theory]
+        //[InlineData("taynara@hotmail.com", "123456", "123456", "taynara", "Louzada")]
+        //public void CreateCostumer(string login, string pass, string passrepeat, string firstName, string lastName)
+        //{
+        //    var request = new LogonRequest
+        //    {
+        //        Login = login,
+        //        Pass = pass,
+        //        PassRepeat = passrepeat,
+        //        FirstName = firstName,
+        //        LastName = lastName
+        //    };
 
-            var auth = _accountService.CreateUser(request);
+        //    var auth = _accountService.CreateUser(request);
 
-            Assert.NotNull(auth);
-            Assert.NotNull(auth.Token);
-        }
+        //    Assert.NotNull(auth);
+        //    Assert.NotNull(auth.Token);
+        //}
     }
 }

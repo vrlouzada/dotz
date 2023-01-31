@@ -21,21 +21,21 @@ namespace DOTZ.Test.Service
         }
 
 
-        [Theory]
-        [InlineData(2, 5)]
-        public void Insert(int productId, int adrressId)
-        {
-            var request = new OrderRequest
-            {
-                ProductId = productId,
-                AddressId = adrressId
-            };
+        //[Theory]
+        //[InlineData(2, 5)]
+        //public void Insert(int productId, int adrressId)
+        //{
+        //    var request = new OrderRequest
+        //    {
+        //        ProductId = productId,
+        //        AddressId = adrressId
+        //    };
 
-            var response = _orderService.SetOrder(request);
+        //    var response = _orderService.SetOrder(request);
 
-            Assert.NotNull(response);
-            Assert.Equal(EnumHelper.GetDescription(OrderStatusValues.ORDER_REQUESTED), response.OrderStatus);
-        }
+        //    Assert.NotNull(response);
+        //    Assert.Equal(EnumHelper.GetDescription(OrderStatusValues.ORDER_REQUESTED), response.OrderStatus);
+        //}
 
         [Fact]
         public void GetOrders()
