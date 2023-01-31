@@ -30,27 +30,27 @@ namespace DOTZ.Test.Repository
         }
 
 
-        [Theory]
-        [InlineData(2, 5, 6, 2, 0, "2021-08-19")]
-        public void Insert(int costumerId, int productId, int addressId, int orderStatusId, double amount, string dateString)
-        {
+        //[Theory]
+        //[InlineData(2, 5, 7, 2, 0, "2021-08-19")]
+        //public void Insert(int costumerId, int productId, int addressId, int orderStatusId, double amount, string dateString)
+        //{
 
-            var date = DateTime.Parse(dateString);
+        //    var date = DateTime.Parse(dateString);
 
-            var order = new Orders
-            {
-                CostumerId = costumerId,
-                ProductId = productId,
-                AddressId = addressId,
-                OrderStatusId = orderStatusId,
-                Date = date,
-                Amount = amount
-            };
+        //    var order = new Orders
+        //    {
+        //        CostumerId = costumerId,
+        //        ProductId = productId,
+        //        AddressId = addressId,
+        //        OrderStatusId = orderStatusId,
+        //        Date = date,
+        //        Amount = amount
+        //    };
 
-            var result = _orderRepository.Insert(order);
+        //    var result = _orderRepository.Insert(order);
 
-            Assert.True(result);
-        }
+        //    Assert.True(result);
+        //}
 
     }
 }

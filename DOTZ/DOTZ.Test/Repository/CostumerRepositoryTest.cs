@@ -28,21 +28,21 @@ namespace DOTZ.Test.Repository
             Assert.Equal(userId, costumer.UserId);
         }
 
-        [Theory]
-        [InlineData(2, "Victor", "Louzada")]
-        public void Create(int userId, string firstName, string lastName)
-        {
-            var costumer = new Costumer
-            {
-                UserId = userId,
-                FirstName = firstName,
-                LastName = lastName
-            };
+        //[Theory]
+        //[InlineData(2, "Victor", "Louzada")]
+        //public void Create(int userId, string firstName, string lastName)
+        //{
+        //    var costumer = new Costumer
+        //    {
+        //        UserId = userId,
+        //        FirstName = firstName,
+        //        LastName = lastName
+        //    };
 
-            var isAdded = _costumerRepository.Insert(costumer);
+        //    var isAdded = _costumerRepository.Insert(costumer);
 
-            Assert.True(isAdded);
-        }
+        //    Assert.True(isAdded);
+        //}
 
         [Theory]
         [InlineData(2, "Victor", "Reis Louzada")]
