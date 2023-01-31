@@ -348,3 +348,4 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/DOTZ/DOTZ.API/Properties/ServiceDependencies/DOTZAPI-2023 - Web Deploy/profile.arm.json
