@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using DOTZ.Domain.Contracts.Repository;
 using DOTZ.Domain.Entity;
+using DOTZ.Domain.Resources;
 using System;
 using System.Collections.Generic;
 using System.Data;
@@ -22,11 +23,9 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"SELECT * FROM {nameof(Costumer)} WHERE UserId = @userId";
-
                 var _db = _conn.GetConnection();
 
-                return _db.QueryFirstOrDefault<Costumer>(sql, new { userId = userId });
+                return _db.QueryFirstOrDefault<Costumer>(Scripts.Costumer_Get, new { userId = userId });
             }
             catch (Exception ex)
             {
@@ -38,13 +37,11 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"INSERT INTO {nameof(Costumer)} (UserId, FirstName, LastName) VALUES (@userId, @firstName, @lastName)";
-
                 var _db = _conn.GetConnection();
 
-                var isExecut = _db.Execute(sql, costumer);
+                var isExecut = _db.Execute(Scripts.Costumer_New, costumer);
 
-                return isExecut == 1 ? true : false;
+                return isExecut == 1;
             }
             catch (Exception ex)
             {
@@ -56,13 +53,11 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"UPDATE {nameof(Costumer)} SET FirstName = @firstName, LastName = @lastName WHERE UserId = @userId";
-
                 var _db = _conn.GetConnection();
 
-                var isUpdated = _db.Execute(sql, costumer);
+                var isUpdated = _db.Execute(Scripts.Costumer_Update, costumer);
 
-                return isUpdated == 1 ? true : false;
+                return isUpdated == 1;
             }
             catch (Exception ex)
             {
@@ -74,11 +69,9 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"SELECT Balance FROM {nameof(Costumer)} WHERE UserId = @userId";
-
                 var _db = _conn.GetConnection();
 
-                return _db.QueryFirstOrDefault<double>(sql, new { UserId = userId });
+                return _db.QueryFirstOrDefault<double>(Scripts.Costumer_GetBalance, new { UserId = userId });
             }
             catch (Exception ex)
             {
@@ -90,13 +83,11 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"UPDATE {nameof(Costumer)} SET Balance = @balance WHERE UserId = @userId";
-
                 var _db = _conn.GetConnection();
 
-                var result = _db.Execute(sql, new { Balance = balance,  UserId = userId });
+                var result = _db.Execute(Scripts.Costumer_UpdateBalance, new { Balance = balance,  UserId = userId });
 
-                return result == 1 ? true : false;
+                return result == 1;
             }
             catch (Exception ex)
             {

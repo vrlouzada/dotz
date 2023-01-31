@@ -1,9 +1,8 @@
 ﻿using Dapper;
 using DOTZ.Domain.Contracts.Repository;
 using DOTZ.Domain.Entity;
+using DOTZ.Domain.Resources;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace DOTZ.Repository.Repositories
 {
@@ -23,8 +22,7 @@ namespace DOTZ.Repository.Repositories
             try
             {
                 var db = _conn.GetConnection();
-                var sql = $"SELECT * FROM {nameof(UserAccounts)} WHERE Login = @login AND Pass = @pass";
-                return db.QueryFirstOrDefault<UserAccounts>(sql, new { login = login, pass = pass });
+                return db.QueryFirstOrDefault<UserAccounts>(Scripts.User_Auth, new { login = login, pass = pass });
             }
             catch (Exception ex)
             {
@@ -37,8 +35,7 @@ namespace DOTZ.Repository.Repositories
             try
             {
                 var db = _conn.GetConnection();
-                var sql = $"SELECT * FROM {nameof(UserAccounts)} WHERE Id = @userId";
-                return db.QueryFirstOrDefault<UserAccounts>(sql, new { userId = userId});
+                return db.QueryFirstOrDefault<UserAccounts>(Scripts.User_GetById, new { userId = userId});
             }
             catch (Exception ex)
             {
@@ -51,7 +48,7 @@ namespace DOTZ.Repository.Repositories
             try
             {
                 var db = _conn.GetConnection();
-                var isExecut = db.Execute("Insert into User (login, pass) values (@login, @pass)", user);
+                var isExecut = db.Execute(Scripts.User_NewUser, user);
 
                 return isExecut == 1 ? true : false;
             }

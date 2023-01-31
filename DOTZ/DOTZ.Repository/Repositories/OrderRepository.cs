@@ -1,10 +1,10 @@
-﻿using DOTZ.Domain.Contracts.Repository;
+﻿using Dapper;
+using DOTZ.Domain.Contracts.Repository;
+using DOTZ.Domain.Entity;
+using DOTZ.Domain.Resources;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Linq;
-using Dapper;
-using DOTZ.Domain.Entity;
 
 namespace DOTZ.Repository.Repositories
 {
@@ -23,11 +23,9 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"SELECT * FROM {nameof(Orders)} WHERE CostumerId = @costumerId";
-
                 var db = _conn.GetConnection();
 
-                return db.Query<Orders>(sql, new { costumerId = costumerId }).ToList();
+                return db.Query<Orders>(Scripts.Order_GetByCostumer, new { costumerId = costumerId }).ToList();
             }
             catch (Exception ex)
             {
@@ -39,11 +37,9 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"INSERT INTO {nameof(Orders)} (CostumerId, ProductId, AddressId, OrderStatusId, Amount, Date) Values (@costumerId, @productId, @addressId, @orderStatusId, @amount, @date)";
-
                 var db = _conn.GetConnection();
 
-                var result = db.Execute(sql, order);
+                var result = db.Execute(Scripts.Order_New, order);
 
                 return result == 1 ? true : false;
             }

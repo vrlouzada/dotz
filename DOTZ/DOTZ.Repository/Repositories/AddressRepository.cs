@@ -1,11 +1,10 @@
 ﻿using Dapper;
 using DOTZ.Domain.Contracts.Repository;
 using DOTZ.Domain.Entity;
+using DOTZ.Domain.Resources;
 using System;
 using System.Collections.Generic;
-using System.Data;
 using System.Linq;
-using System.Text;
 
 namespace DOTZ.Repository.Repositories
 {
@@ -24,11 +23,9 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"SELECT * FROM {nameof(Address)} WHERE Id = @id";
-
                 var _db = _conn.GetConnection();
 
-                return _db.QueryFirstOrDefault<Address>(sql, new { id = id });
+                return _db.QueryFirstOrDefault<Address>(Scripts.Address_GetById, new { id = id });
             }
             catch (Exception ex)
             {
@@ -40,11 +37,9 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"SELECT * FROM {nameof(Address)} WHERE CostumerId = @costumerId and Description = @description";
-
                 var _db = _conn.GetConnection();
 
-                return _db.QueryFirstOrDefault<Address>(sql, new { costumerId = costumerId, description = description });
+                return _db.QueryFirstOrDefault<Address>(Scripts.Address_Get, new { costumerId = costumerId, description = description });
             }
             catch (Exception ex)
             {
@@ -56,11 +51,9 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"SELECT * FROM {nameof(Address)} WHERE CostumerId = @costumerId";
-
                 var _db = _conn.GetConnection();
 
-                return _db.Query<Address>(sql, new { costumerId = costumerId }).ToList();
+                return _db.Query<Address>(Scripts.Address_GetAll, new { costumerId = costumerId }).ToList();
             }
             catch (Exception ex)
             {
@@ -72,14 +65,11 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"INSERT INTO {nameof(Address)} (CostumerId, Description, Street, Number, Complement, PostalCode, Neighborhood, City, State) " +
-                            $"Values (@costumerId, @description, @street, @number, @complement, @postalCode, @neighborhood, @city, @state)";
-
                 var _db = _conn.GetConnection();
 
-                var result = _db.Execute(sql, address);
+                var result = _db.Execute(Scripts.Address_New, address);
 
-                return result == 1 ? true : false;
+                return result == 1;
             }
             catch (Exception ex)
             {
@@ -91,23 +81,11 @@ namespace DOTZ.Repository.Repositories
         {
             try
             {
-                var sql = $"UPDATE {nameof(Address)} " +
-                            $"SET CostumerId = @costumerId, " +
-                            $"    Description = @description, " +
-                            $"    Street = @street, " +
-                            $"    Number = @number, " +
-                            $"    Complement = @complement, " +
-                            $"    PostalCode = @postalCode, " +
-                            $"    Neighborhood = @neighborhood, " +
-                            $"    City = @city, " +
-                            $"    State = @state " +
-                            $"WHERE Id = @id";
-
                 var _db = _conn.GetConnection();
 
-                var result = _db.Execute(sql, address);
+                var result = _db.Execute(Scripts.Address_Update, address);
 
-                return result == 1 ? true : false;
+                return result == 1;
             }
             catch (Exception ex)
             {
