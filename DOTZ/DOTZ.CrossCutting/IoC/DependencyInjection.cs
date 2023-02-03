@@ -35,7 +35,6 @@ namespace DOTZ.CrossCutting.IoC
             service.AddScoped<IOrderService, OrderService>();
             service.AddScoped<IProductService, ProductService>();
 
-
             service.AddTransient<IHttpContextAccessor, HttpContextAccessor>();
             service.AddScoped<IUserSession, UserSession>();
 

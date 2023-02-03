@@ -1,5 +1,5 @@
 ﻿using DOTZ.Domain.Contracts.Repository;
-using MySql.Data.MySqlClient;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Data;
 using System.Data.SqlClient;
@@ -9,14 +9,12 @@ namespace DOTZ.Repository.Bases
 
     public class Connection : IConnection
     {
+        private readonly IConfiguration _configuration;
+        protected IDbConnection _conn;
 
-        private IDbConnection _conn;
-        //private const string CONNEXTION = "Server=127.0.0.1;Database=dotz;User Id=local;Password=@local2021;";
-        private const string CONNEXTION = "Server=vrldbserver.database.windows.net;Database=dotz;Uid=DeveloperAuth;Pwd=@local2021;";
-
-        public Connection()
+        public Connection(IConfiguration configuration)
         {
-
+            _configuration = configuration;
         }
 
 
@@ -26,7 +24,7 @@ namespace DOTZ.Repository.Bases
             {
                 if (_conn == null)
                 {
-                    _conn = new SqlConnection(CONNEXTION);
+                    _conn = new SqlConnection(_configuration.GetConnectionString("SqlServer"));
                 }
                 else
                 {
